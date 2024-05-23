@@ -16,7 +16,7 @@ The Brick Breaker game is a classic arcade game where the player controls a padd
 
 2. Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/elad7290/BrickBreaker.git
     ```
 
 3. Navigate to the project directory:
