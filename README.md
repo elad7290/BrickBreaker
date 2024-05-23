@@ -43,8 +43,3 @@ To play the game, simply run the `Main` class. The game window will open, and yo
 - Break all the bricks to win the game.
 - If the ball falls below the paddle, the game is over.
 
-## Contributing
-Contributions are welcome! Please feel free to submit a pull request or open an issue to improve the game.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
