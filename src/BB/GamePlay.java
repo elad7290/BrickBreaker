@@ -48,6 +48,38 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         //the ball
         graphics.setColor(Color.BLACK);
         graphics.fillOval(ballposX, ballposY, 20, 20);
+        //the score bord
+        graphics.setColor(Color.black);
+        graphics.setFont(new Font("serif", Font.BOLD, 25));
+        graphics.drawString(STR."\{score}", 590, 30);
+
+        if (totalBricks <= 0) {
+            play = false;
+            ballXdir = 0;
+            ballYdir = 0;
+            //Game over message
+            graphics.setColor(Color.red);
+            graphics.setFont(new Font("serif", Font.BOLD, 30));
+            graphics.drawString(STR."You Won, Score: \{score}", 190, 300);
+            ////new game message
+            graphics.setFont(new Font("serif", Font.BOLD, 20));
+            graphics.drawString("Press Enter to Restart", 230, 350);
+        }
+
+        if (ballposY > 570) {
+            play = false;
+            ballXdir = 0;
+            ballYdir = 0;
+            //Game over message
+            graphics.setColor(Color.red);
+            graphics.setFont(new Font("serif", Font.BOLD, 30));
+            graphics.drawString(STR."Game over, Score: \{score}", 190, 300);
+            ////new game message
+            graphics.setFont(new Font("serif", Font.BOLD, 20));
+            graphics.drawString("Press Enter to Restart", 230, 350);
+
+
+        }
 
         graphics.dispose();
     }
@@ -70,20 +102,19 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                         int brickWidth = mapGenerator.brickWidth;
                         int brickHeight = mapGenerator.brickWidth;
 
-                        Rectangle rectangle= new Rectangle(brickX,brickY,brickWidth,brickHeight);
-                        Rectangle ballRect= new Rectangle(ballposX,ballposY,20,20);
-                        Rectangle brickRect= rectangle;
+                        Rectangle rectangle = new Rectangle(brickX, brickY, brickWidth, brickHeight);
+                        Rectangle ballRect = new Rectangle(ballposX, ballposY, 20, 20);
+                        Rectangle brickRect = rectangle;
 
-                        if(ballRect.intersects(brickRect)){
-                            mapGenerator.setBrickValue(0,i,j);
-                            totalBricks --;
-                            score+=5;
+                        if (ballRect.intersects(brickRect)) {
+                            mapGenerator.setBrickValue(0, i, j);
+                            totalBricks--;
+                            score += 5;
 
-                            if(ballposX+19<=brickRect.x|| ballposX+1>=brickRect.x+brickRect.width){
+                            if (ballposX + 19 <= brickRect.x || ballposX + 1 >= brickRect.x + brickRect.width) {
                                 ballXdir = -ballXdir;
-                            }
-                            else {
-                                ballYdir=-ballYdir;
+                            } else {
+                                ballYdir = -ballYdir;
                             }
                         }
 
@@ -130,6 +161,21 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 playerX = 10;
             } else {
                 moveLeft();
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!play) {
+                play = true;
+                ballXdir = -1;
+                ballYdir = -2;
+                ballposX = 120;
+                ballposY =350;
+                score = 0;
+                totalBricks = 21;
+                mapGenerator = new MapGenerator(3, 7);
+                repaint();
+
+
             }
         }
 
